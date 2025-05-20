@@ -3,11 +3,15 @@
 :root[data-mantine-color-scheme="dark"] {
   --color-bg: #0a100d;
   --color-text: #f8f7ff;
+  --color-grid: #1e1e1e;
+  --color-radial: #21154c;
 }
 
 :root[data-mantine-color-scheme="light"] {
-  --color-text: #f8f7ff;
+  --color-bg: #f8f7ff;
   --color-text: #0a100d;
+  --color-grid: #f0f0f0;
+  --color-radial: #d5c5ff;
 }
 
 @theme {
@@ -34,8 +38,9 @@
   --color-accent-900: #c2d4e7;
 
   --color-surface: var(--color-bg);
-
   --color-base: var(--color-text);
+  --color-grid: var(--color-grid);
+  --color-radial: var(--color-radial);
 
   --breakpoint-xs: 480px;
   --breakpoint-sm: 640px;

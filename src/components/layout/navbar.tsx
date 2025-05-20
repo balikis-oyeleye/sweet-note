@@ -11,7 +11,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import {
   ActionIcon,
   useMantineColorScheme,
-  Container,
   Divider,
   Button,
   Drawer,
@@ -71,11 +70,11 @@ const Navbar = () => {
       </a>
 
       <header
-        className={`sticky top-0 z-20 transition-transform duration-300 bg-surface border-b-[0.1px] ${
+        className={`sticky top-0 z-20 transition-transform duration-300  backdrop-blur-lg ${
           isVisible ? "translate-y-0" : "-translate-y-full"
-        } backdrop-blur-lg `}
+        }`}
       >
-        <Container
+        <div
           style={{
             display: "flex",
             alignItems: "center",
@@ -83,7 +82,7 @@ const Navbar = () => {
             width: "100%",
             height: "4rem",
           }}
-          size="xl"
+          className="container mx-auto px-4"
         >
           <Logo />
 
@@ -148,7 +147,7 @@ const Navbar = () => {
               <RiMenu3Fill className="text-2xl text-base" />
             </button>
           </div>
-        </Container>
+        </div>
       </header>
 
       <Drawer

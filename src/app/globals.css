@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root[data-mantine-color-scheme="dark"] {
+  --color-bg: #0a100d;
+  --color-text: #f8f7ff;
+}
+
+:root[data-mantine-color-scheme="light"] {
+  --color-text: #f8f7ff;
+  --color-text: #0a100d;
+}
+
+@theme {
+  --color-primary-50: #997c00;
+  --color-primary-100: #bb9800;
+  --color-primary-200: #ddb300;
+  --color-primary-300: #ffcf00;
+  --color-primary-400: #ffdd4a; /* original color*/
+  --color-primary-500: #ffe266;
+  --color-primary-600: #ffe988;
+  --color-primary-700: #fff5cc;
+  --color-primary-800: #fff9e6;
+  --color-primary-900: #fffcf7;
+
+  --color-accent-50: #2c4c6d;
+  --color-accent-100: #355d86;
+  --color-accent-200: #3f6e9e;
+  --color-accent-300: #497fb6;
+  --color-accent-400: #3c6997; /* original color*/
+  --color-accent-500: #6190c0;
+  --color-accent-600: #79a1ca;
+  --color-accent-700: #92b2d3;
+  --color-accent-800: #aac3dd;
+  --color-accent-900: #c2d4e7;
+
+  --color-surface: var(--color-bg);
+
+  --color-base: var(--color-text);
+
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+html,
+body {
+  transition: background-color 0.3s ease, color 0.1s ease;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+button {
+  cursor: pointer;
+}
+
+.hover-underline-effect {
+  @apply relative inline-block 
+         after:absolute after:bottom-0 after:left-0 
+         after:h-[2.5px] after:w-0
+         after:transition-all after:duration-300 
+         hover:after:w-full after:bg-primary-400 after:rounded-2xl;
+}

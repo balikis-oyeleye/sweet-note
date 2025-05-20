@@ -1,6 +1,6 @@
 "use client";
 
-import { ChildrenType } from "@/models/types/global-types";
+import type { ChildrenType } from "@/models/types/global-types";
 import React, { useEffect, useState } from "react";
 
 const ClientProvider = ({ children }: ChildrenType) => {

@@ -1,50 +1,34 @@
 import { screen, fireEvent } from "@testing-library/react";
 import Navbar from "../navbar";
-import { customRender } from "@/utils/test-utils";
+import { customRender } from "@/utils/test-utils/render-utils";
+
+jest.mock("next/navigation", () => ({
+  useRouter() {
+    return {
+      prefetch: () => null,
+    };
+  },
+}));
 
 describe("Navbar", () => {
-  it("menu bar opens sidebar when clicked", () => {
-    customRender(<Navbar />);
-
-    const menuButton = screen.getByRole("button", { name: "Open menu" });
-
-    fireEvent.click(menuButton);
-
-    const closeButton = screen.getByRole("button", {
-      name: "close sidebar",
-    });
-
-    expect(closeButton).toBeInTheDocument();
-  });
-
-  it("closes sidebar when close button is clicked", () => {
-    customRender(<Navbar />);
-
-    const menuButton = screen.getByRole("button", { name: "Open menu" });
-
-    fireEvent.click(menuButton);
-
-    const closeButton = screen.getByRole("button", {
-      name: "close sidebar",
-    });
-
-    fireEvent.click(closeButton);
-
-    expect(
-      screen.queryByRole("button", { name: "close sidebar" })
-    ).not.toBeInTheDocument();
-  });
-
   it("toggles theme when button is clicked", () => {
     customRender(<Navbar />);
-    const toggleButton = screen.getByRole("button", {
-      name: /activate dark mode/i,
-    });
+    const toggleButton = screen.getByTestId("toggle-color-scheme-button");
+    expect(toggleButton).toHaveAccessibleName("Activate light mode");
 
     fireEvent.click(toggleButton);
 
-    expect(
-      screen.getByRole("button", { name: /activate light mode/i })
-    ).toBeInTheDocument();
+    expect(toggleButton).toHaveAccessibleName("Activate dark mode");
+  });
+
+  it("toggles sidebar when button is clicked", () => {
+    customRender(<Navbar />);
+    const toggleButton = screen.getByTestId("toggle-sidebar-button");
+    expect(toggleButton).toHaveAccessibleName("Open sidebar");
+
+    fireEvent.click(toggleButton);
+    expect(toggleButton).toHaveAccessibleName("Close sidebar");
+    fireEvent.click(toggleButton);
+    expect(toggleButton).toHaveAccessibleName("Open sidebar");
   });
 });

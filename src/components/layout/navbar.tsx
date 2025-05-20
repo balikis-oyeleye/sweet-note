@@ -2,6 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { IoMoon, IoSunny } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import { RiMenu3Fill } from "react-icons/ri";
+import Link from "next/link";
+import { CgNotes } from "react-icons/cg";
+import { AnimatePresence, motion } from "framer-motion";
+
 import {
   ActionIcon,
   useMantineColorScheme,
@@ -10,21 +16,18 @@ import {
   Button,
   Drawer,
 } from "@mantine/core";
-import { AnimatePresence, motion } from "framer-motion";
-import { ClientProvider } from "@/provider";
-import { Logo } from "../ui";
 import { useMediaQuery, useWindowScroll } from "@mantine/hooks";
-import { RiMenu3Fill } from "react-icons/ri";
-import Link from "next/link";
-import { CgNotes } from "react-icons/cg";
+import { ClientProvider } from "@/provider";
+
+import { Logo } from "../ui";
 
 const Navbar = () => {
+  const router = useRouter();
   const [scroll] = useWindowScroll();
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const matches = useMediaQuery("(min-width: 640px)");
-  // const IS_AUTHENTICATED = false;
 
   const { setColorScheme, colorScheme } = useMantineColorScheme({
     keepTransitions: true,
@@ -36,6 +39,18 @@ const Navbar = () => {
     setColorScheme(isDark ? "light" : "dark");
   };
 
+  const toggleSidebar = () => {
+    setSidebarOpen((prev) => !prev);
+  };
+
+  // Close sidebar when screen size is larger than 640px
+  useEffect(() => {
+    if (matches) {
+      setSidebarOpen(false);
+    }
+  }, [matches]);
+
+  // Hide header on scroll down and show on scroll up
   useEffect(() => {
     if (scroll.y > lastScrollY.current && scroll.y > 50) {
       setIsVisible(false);
@@ -45,20 +60,6 @@ const Navbar = () => {
 
     lastScrollY.current = scroll.y;
   }, [scroll.y]);
-
-  const toggleSidebar = () => {
-    setSidebarOpen((prev) => !prev);
-  };
-
-  useEffect(() => {
-    document.body.style.overflow = sidebarOpen ? "hidden" : "";
-  }, [sidebarOpen]);
-
-  useEffect(() => {
-    if (matches) {
-      setSidebarOpen(false);
-    }
-  }, [matches]);
 
   return (
     <ClientProvider>
@@ -97,6 +98,7 @@ const Navbar = () => {
                 onClick={toggleColorScheme}
                 aria-label={`Activate ${isDark ? "light" : "dark"} mode`}
                 title={`Activate ${isDark ? "light" : "dark"} mode`}
+                data-testid="toggle-color-scheme-button"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {isDark ? (
@@ -125,17 +127,23 @@ const Navbar = () => {
 
               <Divider size="sm" orientation="vertical" />
 
-              <Button variant="filled" color="primary.4" autoContrast>
-                Sign up
+              <Button
+                variant="filled"
+                color="primary.4"
+                autoContrast
+                onClick={() => router.push("/notepad")}
+              >
+                Get Started
               </Button>
             </div>
 
             <button
               className="sm:hidden"
               onClick={toggleSidebar}
-              aria-label={sidebarOpen ? "Close menu" : "Open menu"}
+              aria-label={sidebarOpen ? "Close sidebar" : "Open sidebar"}
               aria-expanded={sidebarOpen}
-              aria-controls="mobile-menu"
+              aria-controls="mobile-sidebar"
+              data-testid="toggle-sidebar-button"
             >
               <RiMenu3Fill className="text-2xl text-base" />
             </button>
@@ -162,6 +170,7 @@ const Navbar = () => {
             onClick={toggleColorScheme}
             aria-label={`Activate ${isDark ? "light" : "dark"} mode`}
             title={`Activate ${isDark ? "light" : "dark"} mode`}
+            data-testid="toggle-color-scheme-button"
           >
             <AnimatePresence mode="wait" initial={false}>
               {isDark ? (
@@ -189,8 +198,13 @@ const Navbar = () => {
             <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
           </button>
 
-          <Button variant="filled" color="primary.4" autoContrast>
-            Login
+          <Button
+            variant="filled"
+            color="primary.4"
+            autoContrast
+            onClick={() => router.push("/notepad")}
+          >
+            Get Started
           </Button>
         </div>
       </Drawer>

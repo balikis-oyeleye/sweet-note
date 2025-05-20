@@ -23,7 +23,9 @@ const testTheme = mergeThemeOverrides(
 export function customRender(ui: React.ReactNode) {
   return testingLibraryRender(<>{ui}</>, {
     wrapper: ({ children }: { children: React.ReactNode }) => (
-      <MantineProvider theme={testTheme}>{children}</MantineProvider>
+      <MantineProvider theme={testTheme} defaultColorScheme="dark">
+        {children}
+      </MantineProvider>
     ),
   });
 }

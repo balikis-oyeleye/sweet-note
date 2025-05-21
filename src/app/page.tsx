@@ -52,7 +52,7 @@ export default function Home() {
             from anywhere.
           </p>
           <div className="flex gap-4 pt-6 justify-center items-center">
-            <Link href="/notepad">
+            <Link href="/notes">
               <Button
                 component="div"
                 size="lg"
@@ -107,7 +107,7 @@ export default function Home() {
             your thoughts, and boost your productivity.
           </p>
 
-          <Link href="/notepad">
+          <Link href="/notes">
             <Button
               component="div"
               size="lg"

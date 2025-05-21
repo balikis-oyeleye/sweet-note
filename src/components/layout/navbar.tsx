@@ -88,7 +88,7 @@ const Navbar = () => {
 
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex items-center gap-4">
-              <Link href="/notepad">
+              <Link href="/notes">
                 <span className="hover-underline-effect">Notepad</span>
               </Link>
 
@@ -130,7 +130,7 @@ const Navbar = () => {
                 variant="filled"
                 color="primary.4"
                 autoContrast
-                onClick={() => router.push("/notepad")}
+                onClick={() => router.push("/notes")}
               >
                 Get Started
               </Button>
@@ -157,7 +157,7 @@ const Navbar = () => {
         size="xs"
       >
         <div className="flex flex-col gap-4">
-          <Link href="/notepad" onClick={toggleSidebar}>
+          <Link href="/notes" onClick={toggleSidebar}>
             <div className="flex items-center gap-2">
               <CgNotes className="text-xl inherit" />
               <span>Notepad</span>
@@ -201,7 +201,7 @@ const Navbar = () => {
             variant="filled"
             color="primary.4"
             autoContrast
-            onClick={() => router.push("/notepad")}
+            onClick={() => router.push("/notes")}
           >
             Get Started
           </Button>

@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <div
-      className="relative min-h-screen w-full overflow-hidden"
+      className="relative min-h-screen w-full overflow-hidden p-1"
       id="main-content"
     >
       {/* Background Grid */}
@@ -40,19 +40,19 @@ export default function Home() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_800px_at_100%_200px,var(--color-radial),transparent)]" />
 
       {/* Content */}
-      <div className="flex flex-col items-center justify-center h-screen max-h-[800px] px-4 text-center">
+      <div className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] max-h-[800px] px-4 text-center">
         <div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
             Capture Your <span className="text-primary-400">Ideas,</span> <br />
             Organize Your <span className="text-accent-400">Thoughts</span>
           </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mt-4">
+          <p className="text-base md:text-lg lg:text-xl max-w-2xl mx-auto mt-4">
             A beautiful and simple way to take notes, organize your thoughts,
             and keep track of your ideas. Write, edit, and access your notes
             from anywhere.
           </p>
-          <div className="flex gap-4 pt-6 justify-center items-center">
-            <Link href="/notes">
+          <div className="flex gap-4 pt-6 justify-center items-center flex-col md:flex-row max-w-xl mx-auto">
+            <Link href="/notes" className="w-full">
               <Button
                 component="div"
                 size="lg"
@@ -60,12 +60,19 @@ export default function Home() {
                 color="primary.4"
                 autoContrast
                 rightSection={<BsArrowRight size={18} />}
+                w="100%"
               >
                 Start Taking Notes
               </Button>
             </Link>
-            <Button variant="outline" size="lg" autoContrast color="accent.4">
-              Learn More
+            <Button
+              variant="outline"
+              size="lg"
+              autoContrast
+              color="accent.4"
+              w="100%"
+            >
+              Watch Demo
             </Button>
           </div>
         </div>

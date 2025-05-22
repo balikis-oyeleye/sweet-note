@@ -1,6 +1,7 @@
 import { render as testingLibraryRender } from "@testing-library/react";
 import {
   createTheme,
+  Drawer,
   MantineProvider,
   mergeThemeOverrides,
   Modal,
@@ -12,6 +13,11 @@ const testTheme = mergeThemeOverrides(
   createTheme({
     components: {
       Modal: Modal.extend({
+        defaultProps: {
+          transitionProps: { duration: 0 },
+        },
+      }),
+      Drawer: Drawer.extend({
         defaultProps: {
           transitionProps: { duration: 0 },
         },

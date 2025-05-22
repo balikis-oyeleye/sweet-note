@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { IoMoon, IoSunny } from "react-icons/io5";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { RiMenu3Fill } from "react-icons/ri";
 import Link from "next/link";
 import { CgNotes } from "react-icons/cg";
@@ -21,6 +21,7 @@ import { ClientProvider } from "@/provider";
 import { Logo } from "../ui";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const router = useRouter();
   const [scroll] = useWindowScroll();
   const [isVisible, setIsVisible] = useState(true);
@@ -59,6 +60,8 @@ const Navbar = () => {
 
     lastScrollY.current = scroll.y;
   }, [scroll.y]);
+
+  const isNotePage = pathname === "/notes" || pathname === "/notes/";
 
   return (
     <ClientProvider>
@@ -124,16 +127,20 @@ const Navbar = () => {
                 </AnimatePresence>
               </ActionIcon>
 
-              <Divider size="sm" orientation="vertical" />
-
-              <Button
-                variant="filled"
-                color="primary.4"
-                autoContrast
-                onClick={() => router.push("/notes")}
-              >
-                Get Started
-              </Button>
+              {!isNotePage && (
+                <>
+                  {" "}
+                  <Divider size="sm" orientation="vertical" />
+                  <Button
+                    variant="filled"
+                    color="primary.4"
+                    autoContrast
+                    onClick={() => router.push("/notes")}
+                  >
+                    Get Started
+                  </Button>
+                </>
+              )}
             </div>
 
             <button
@@ -197,14 +204,16 @@ const Navbar = () => {
             <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
           </button>
 
-          <Button
-            variant="filled"
-            color="primary.4"
-            autoContrast
-            onClick={() => router.push("/notes")}
-          >
-            Get Started
-          </Button>
+          {!isNotePage && (
+            <Button
+              variant="filled"
+              color="primary.4"
+              autoContrast
+              onClick={() => router.push("/notes")}
+            >
+              Get Started
+            </Button>
+          )}
         </div>
       </Drawer>
     </ClientProvider>

@@ -1,10 +1,13 @@
 "use client";
 
-import { MagicCard } from "@/components/ui/magic-card";
-import { Button } from "@mantine/core";
 import Link from "next/link";
 import { BiBookOpen, BiEdit, BiSave } from "react-icons/bi";
 import { BsArrowRight } from "react-icons/bs";
+import { motion } from "motion/react";
+
+import { MagicCard } from "@/components/ui/magic-card";
+import { Button } from "@mantine/core";
+import { Footer } from "@/components";
 
 export default function Home() {
   const features = [
@@ -40,7 +43,12 @@ export default function Home() {
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_800px_at_100%_200px,var(--color-radial),transparent)]" />
 
       {/* Content */}
-      <div className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] max-h-[800px] px-4 text-center">
+      <motion.div
+        className="flex flex-col items-center justify-center h-[calc(100vh-5rem)] max-h-[800px] px-4 text-center"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div>
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
             Capture Your <span className="text-primary-400">Ideas,</span> <br />
@@ -76,7 +84,7 @@ export default function Home() {
             </Button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Features */}
       <div className="container mx-auto px-4 py-16 md:py-24">
@@ -85,26 +93,67 @@ export default function Home() {
           Experience
         </h2>
 
-        <div className="grid sm:grid-cols-3 gap-8">
+        <motion.div
+          className="grid sm:grid-cols-3 gap-8 items-stretch"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={{
+            hidden: {},
+            show: {
+              transition: {
+                staggerChildren: 0.3,
+              },
+            },
+          }}
+        >
           {features.map(({ icon: Icon, title, description }) => (
-            <MagicCard
+            <motion.div
               key={title}
-              className="border border-accent-400/20 rounded-lg p-6 transition duration-300 "
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.4,
+                    ease: "easeOut",
+                  },
+                },
+              }}
             >
-              <div>
-                <div className="bg-primary-400/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
-                  <Icon className="text-primary-400" size={20} />
+              <MagicCard className="border border-accent-400/20 rounded-lg p-6 transition duration-300 h-full">
+                <div>
+                  <div className="bg-primary-400/10 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                    <Icon className="text-primary-400" size={20} />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3">{title}</h3>
+                  <p>{description}</p>
                 </div>
-                <h3 className="text-xl font-bold  mb-3">{title}</h3>
-                <p>{description}</p>
-              </div>
-            </MagicCard>
+              </MagicCard>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
 
       {/* CTA */}
-      <div className="container mx-auto px-4 py-16">
+      <motion.div
+        className="container mx-auto px-4 py-16"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          show: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.8,
+              ease: "easeOut",
+            },
+          },
+        }}
+      >
         <div className="bg-gradient-to-r from-accent-400/40 to-primary-400/40 rounded-2xl p-8 md:p-12 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Ready to Start Taking Notes?
@@ -127,7 +176,9 @@ export default function Home() {
             </Button>
           </Link>
         </div>
-      </div>
+      </motion.div>
+
+      <Footer />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { Logo } from "../ui";
 
 const Footer = () => {
   return (
-    <footer className="mt-auto py-8 border-t border-accent-400">
+    <footer className="mt-auto py-8 border-t border-gray-200">
       <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
         <Logo />
         <p className="text-sm">

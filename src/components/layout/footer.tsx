@@ -14,7 +14,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="hover-underline-effect"
           >
-            Ryu
+            balikis
           </a>
         </p>
         <div className="flex gap-6">

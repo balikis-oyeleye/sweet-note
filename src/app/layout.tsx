@@ -6,8 +6,6 @@ import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 
 import { ThemeProvider } from "@/provider";
 import { Navbar } from "@/components";
-import Footer from "@/components/layout/footer";
-
 const manrope = Manrope({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
@@ -32,7 +30,6 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           {children}
-          <Footer />
         </ThemeProvider>
       </body>
     </html>

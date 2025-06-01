@@ -62,7 +62,7 @@ const Navbar = () => {
     lastScrollY.current = scroll.y;
   }, [scroll.y]);
 
-  const isNotePage = pathname === "/notes" || pathname === "/notes/";
+  const isNotePage = pathname.startsWith("/notes");
 
   const createNewNote = () => router.push(`notes/${uuidv4()}`);
 

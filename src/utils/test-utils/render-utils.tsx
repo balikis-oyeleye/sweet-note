@@ -3,6 +3,7 @@ import {
   createTheme,
   Drawer,
   MantineProvider,
+  Menu,
   mergeThemeOverrides,
   Modal,
 } from "@mantine/core";
@@ -18,6 +19,11 @@ const testTheme = mergeThemeOverrides(
         },
       }),
       Drawer: Drawer.extend({
+        defaultProps: {
+          transitionProps: { duration: 0 },
+        },
+      }),
+      Menu: Menu.extend({
         defaultProps: {
           transitionProps: { duration: 0 },
         },

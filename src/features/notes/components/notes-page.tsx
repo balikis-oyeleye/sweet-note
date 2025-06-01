@@ -5,17 +5,23 @@ import { v4 as uuidv4 } from "uuid";
 import { useRouter } from "next/navigation";
 
 import { ActionIcon } from "@mantine/core";
-import { STORE_KEYS } from "@/constants/store-keys";
-import { getLocalStorageItem } from "@/utils/local-storage-utils";
 
 import NoteCard from "./note-card";
-import { Note } from "../types";
+import { NoteHelper } from "@/helper/notes-helper";
+import { useState } from "react";
+import { NoteProps } from "../types";
 
 const NotesPage = () => {
+  const [notes, setNotes] = useState<NoteProps[]>(NoteHelper.getNote());
+
   const router = useRouter();
-  const notes = getLocalStorageItem<Note[]>(STORE_KEYS.NOTES) || [];
 
   const createNewNote = () => router.push(`notes/${uuidv4()}`);
+
+  const handlePinToggle = (id: string) => {
+    const updatedNotes = NoteHelper.pinNote(id);
+    setNotes(updatedNotes);
+  };
 
   return (
     <main
@@ -40,7 +46,14 @@ const NotesPage = () => {
 
           {/* Notes */}
           {notes.map((note) => (
-            <NoteCard key={note.id} {...note} />
+            <NoteCard
+              key={note.id}
+              note={note}
+              onPinToggle={handlePinToggle}
+              onDelete={(id) => NoteHelper.deleteNote(id)}
+              onDuplicate={(id) => NoteHelper.duplicateNote(id)}
+              onEdit={(id) => router.push(`notes/${id}`)}
+            />
           ))}
         </div>
       </div>

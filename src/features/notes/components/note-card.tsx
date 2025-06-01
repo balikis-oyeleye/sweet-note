@@ -60,7 +60,7 @@ const NoteCard = (note: Note) => {
         </Menu>
       </div>
 
-      <p className="text-xs mt-1 mb-2">6th Apr 2025</p>
+      <p className="text-xs mt-1 mb-2">{note.lastModifiedDate}</p>
 
       <p className="text-sm line-clamp-4">{note.content}</p>
     </div>

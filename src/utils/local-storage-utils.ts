@@ -1,10 +1,16 @@
-type StoreItem = string | number | boolean | object | null;
+type StoreItem = string | number | boolean | object;
 
-export const setLocalStorage = (key: string, value: StoreItem) => {
+export const setLocalStorageItem = (key: string, value: StoreItem) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-export const getLocalStorage = <T extends StoreItem>(key: string): T | null => {
+export const getLocalStorageItem = <T extends StoreItem>(
+  key: string
+): T | null => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
   const item = localStorage.getItem(key);
 
   if (item) {
@@ -18,6 +24,6 @@ export const getLocalStorage = <T extends StoreItem>(key: string): T | null => {
   return null;
 };
 
-export const removeLocalStorage = (key: string): void => {
+export const removeLocalStorageItem = (key: string): void => {
   localStorage.removeItem(key);
 };

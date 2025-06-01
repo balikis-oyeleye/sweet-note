@@ -3,47 +3,13 @@
 import { HiMiniPencilSquare } from "react-icons/hi2";
 import NoteCard from "./note-card";
 import { ActionIcon } from "@mantine/core";
-
-const notes = [
-  {
-    id: 1,
-    title: "My First Note",
-    content: "This is the content of my first note.",
-    pinned: false,
-  },
-  {
-    id: 2,
-    title: "Shopping List",
-    content: "Milk, Eggs, Bread, Butter",
-    pinned: true,
-  },
-  {
-    id: 3,
-    title: "Important Note",
-    content: "This is an important note.",
-    pinned: false,
-  },
-  {
-    id: 4,
-    title: "Meeting Notes",
-    content: "Discuss project updates and next steps.",
-    pinned: true,
-  },
-  {
-    id: 5,
-    title: "Travel Plans",
-    content: "Plan for the upcoming trip to the mountains.",
-    pinned: false,
-  },
-  {
-    id: 6,
-    title: "Recipe Ideas",
-    content: "Pasta, Salad, Pizza, Dessert",
-    pinned: true,
-  },
-];
+import { STORE_KEYS } from "@/constants/store-keys";
+import { getLocalStorageItem } from "@/utils/local-storage-utils";
+import { Note } from "../types";
 
 const NotesPage = () => {
+  const notes = getLocalStorageItem<Note[]>(STORE_KEYS.NOTES) || [];
+
   return (
     <main
       className="px-4 py-8 bg-surface/25 h-full min-h-[calc(100vh-4.2rem)] overflow-y-auto"

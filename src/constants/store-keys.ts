@@ -1,0 +1,6 @@
+const STORE_NAME = "SWEET_NOTE";
+
+export const STORE_KEYS = {
+  NOTES: `${STORE_NAME}_NOTES`,
+  THEME: `${STORE_NAME}_THEME`,
+};

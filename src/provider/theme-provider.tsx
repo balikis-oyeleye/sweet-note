@@ -1,5 +1,6 @@
 "use client";
 
+import { STORE_KEYS } from "@/constants/store-keys";
 import {
   MantineProvider,
   createTheme,
@@ -8,7 +9,7 @@ import {
 import { ReactNode } from "react";
 
 const colorSchemeManager = localStorageColorSchemeManager({
-  key: "sweet-note-theme",
+  key: STORE_KEYS.THEME,
 });
 
 type ThemeProviderProps = {

@@ -7,6 +7,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import Link from "next/link";
 import { CgNotes } from "react-icons/cg";
 import { AnimatePresence, motion } from "framer-motion";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   ActionIcon,
@@ -61,7 +62,9 @@ const Navbar = () => {
     lastScrollY.current = scroll.y;
   }, [scroll.y]);
 
-  const isNotePage = pathname === "/notes" || pathname === "/notes/";
+  const isNotePage = pathname.startsWith("/notes");
+
+  const createNewNote = () => router.push(`notes/${uuidv4()}`);
 
   return (
     <ClientProvider>
@@ -135,7 +138,7 @@ const Navbar = () => {
                     variant="filled"
                     color="primary.4"
                     autoContrast
-                    onClick={() => router.push("/notes")}
+                    onClick={createNewNote}
                   >
                     Get Started
                   </Button>
@@ -209,7 +212,7 @@ const Navbar = () => {
               variant="filled"
               color="primary.4"
               autoContrast
-              onClick={() => router.push("/notes")}
+              onClick={createNewNote}
             >
               Get Started
             </Button>

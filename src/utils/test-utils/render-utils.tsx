@@ -6,6 +6,7 @@ import {
   Menu,
   mergeThemeOverrides,
   Modal,
+  Popover,
 } from "@mantine/core";
 import { theme } from "@/provider/theme-provider";
 
@@ -19,6 +20,11 @@ const testTheme = mergeThemeOverrides(
         },
       }),
       Drawer: Drawer.extend({
+        defaultProps: {
+          transitionProps: { duration: 0 },
+        },
+      }),
+      Popover: Popover.extend({
         defaultProps: {
           transitionProps: { duration: 0 },
         },

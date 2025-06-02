@@ -23,6 +23,18 @@ const NotesPage = () => {
     setNotes(updatedNotes);
   };
 
+  const handleDelete = (id: string) => {
+    const updateNotes = NoteHelper.deleteNote(id);
+
+    setNotes(updateNotes);
+  };
+
+  const handleDuplicate = (id: string) => {
+    const updateNotes = NoteHelper.duplicateNote(id);
+
+    setNotes(updateNotes);
+  };
+
   return (
     <main
       className="px-4 py-8 bg-surface/25 h-full min-h-[calc(100vh-4.2rem)] overflow-y-auto"
@@ -36,22 +48,20 @@ const NotesPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
           {/* Create new note button */}
           <button
-            data-testid="new-note-card-button"
             onClick={createNewNote}
             className="border-dashed border-2 border-gray-300 h-40 rounded-lg flex items-center justify-center text-base/50 hover:border-primary-400 hover:text-primary-400 transition"
           >
-            <HiMiniPencilSquare size={24} />
+            <HiMiniPencilSquare size={24} aria-hidden="true" />
             <span className="ml-2 font-medium">New Note</span>
           </button>
 
-          {/* Notes */}
           {notes.map((note) => (
             <NoteCard
               key={note.id}
               note={note}
               onPinToggle={handlePinToggle}
-              onDelete={(id) => NoteHelper.deleteNote(id)}
-              onDuplicate={(id) => NoteHelper.duplicateNote(id)}
+              onDelete={handleDelete}
+              onDuplicate={handleDuplicate}
               onEdit={(id) => router.push(`notes/${id}`)}
             />
           ))}
@@ -60,7 +70,6 @@ const NotesPage = () => {
 
       {/* Floating "New Note" button */}
       <ActionIcon
-        data-testid="new-note-floating-button"
         autoContrast
         variant="filled"
         color="primary.4"

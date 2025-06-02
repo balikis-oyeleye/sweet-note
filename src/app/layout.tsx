@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 

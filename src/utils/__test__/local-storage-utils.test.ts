@@ -5,7 +5,7 @@ import {
 } from "@/utils/local-storage-utils";
 
 describe("local storage utils", () => {
-  const STORAGE_KEY = "test";
+  const STORAGE_KEY = "test-key";
 
   afterEach(() => {
     localStorage.clear();
@@ -22,6 +22,7 @@ describe("local storage utils", () => {
 
   it("sets and get the object item", () => {
     const value = { id: 1, content: "winner" };
+
     setLocalStorageItem(STORAGE_KEY, value);
 
     const item = getLocalStorageItem<typeof value>(STORAGE_KEY);

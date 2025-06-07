@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "Sweet Notes",
     images: [
       {
-        url: "https://sweet-notes.vercel.app/assets/preview.jpeg",
+        url: "/assets/preview.jpeg",
         width: 1200,
         height: 630,
         alt: "Sweet Notes Open Graph Image",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     description:
       "A beautiful and simple way to take notes, organize your thoughts, and keep track of your ideas.",
     creator: "@balikis_oyeleye", // optional
-    images: ["https://sweet-notes.vercel.app/assets/preview.jpeg"],
+    images: ["/assets/preview.jpeg"],
   },
 };
 

@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "@/styles/globals.css";
 import "@mantine/core/styles.css";
+import "@mantine/tiptap/styles.css";
+import "@mantine/notifications/styles.css";
 import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 
 import { ThemeProvider } from "@/provider";
 import { Navbar } from "@/components";
+
 const manrope = Manrope({
   weight: ["400", "500", "600"],
   subsets: ["latin"],

@@ -7,6 +7,8 @@ import { IoEllipsisHorizontal } from "react-icons/io5";
 import { BsFillPinFill, BsPencilSquare, BsPin } from "react-icons/bs";
 import { FaClipboard, FaTrash } from "react-icons/fa";
 import { MdPushPin } from "react-icons/md";
+import { TextHelper } from "@/helper/text-helper";
+import dayjs from "dayjs";
 
 const NoteCard = ({
   note,
@@ -25,7 +27,10 @@ const NoteCard = ({
       className="border border-gray-200 rounded-lg shadow-sm p-4 hover:shadow-md transition min-h-40 cursor-pointer"
     >
       <div className="flex justify-between items-start mb-4">
-        <h2 className="font-semibold text-lg line-clamp-1 flex items-center gap-1">
+        <h2
+          className="font-semibold text-lg line-clamp-1 flex items-center gap-1"
+          title={note.title}
+        >
           {note.pinned && (
             <MdPushPin
               className="text-primary-400 text-xl"
@@ -33,7 +38,7 @@ const NoteCard = ({
               aria-hidden="true"
             />
           )}
-          {note.title}
+          {TextHelper(note.title).truncate(30, "...").getText()}
         </h2>
 
         {/* Menu actions */}
@@ -86,9 +91,15 @@ const NoteCard = ({
         </Menu>
       </div>
 
-      <p className="text-xs mt-1 mb-2 text-left">{note.lastModifiedDate}</p>
+      <p className="text-xs mt-1 mb-2 text-left text-muted-foreground">
+        Last Updated:{" "}
+        {dayjs(note.lastModifiedDate).format("MMM D, YYYY h:mm A")}
+      </p>
 
-      <p className="text-sm line-clamp-4 text-left">{note.content}</p>
+      <p
+        className="text-sm line-clamp-3 text-left"
+        dangerouslySetInnerHTML={{ __html: note.content }}
+      />
     </article>
   );
 };

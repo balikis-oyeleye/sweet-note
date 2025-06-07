@@ -56,8 +56,8 @@ export default function Home() {
           </h1>
           <p className="text-base md:text-lg lg:text-xl max-w-2xl mx-auto mt-4">
             A beautiful and simple way to take notes, organize your thoughts,
-            and keep track of your ideas. Write, edit, and access your notes
-            from anywhere.
+            and keep track of your ideas. Write, edit and keep track of your
+            notes with ease.
           </p>
           <div className="flex gap-4 pt-6 justify-center items-center flex-col md:flex-row max-w-md mx-auto">
             <Link href="/notes" className="w-full">

@@ -7,6 +7,7 @@ import {
   localStorageColorSchemeManager,
 } from "@mantine/core";
 import { ReactNode } from "react";
+import { Notifications } from "@mantine/notifications";
 
 const colorSchemeManager = localStorageColorSchemeManager({
   key: STORE_KEYS.THEME,
@@ -23,6 +24,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
       defaultColorScheme="auto"
       colorSchemeManager={colorSchemeManager}
     >
+      <Notifications />
       {children}
     </MantineProvider>
   );

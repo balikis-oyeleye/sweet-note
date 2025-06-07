@@ -59,7 +59,7 @@ export default function Home() {
             and keep track of your ideas. Write, edit, and access your notes
             from anywhere.
           </p>
-          <div className="flex gap-4 pt-6 justify-center items-center flex-col md:flex-row max-w-xl mx-auto">
+          <div className="flex gap-4 pt-6 justify-center items-center flex-col md:flex-row max-w-md mx-auto">
             <Link href="/notes" className="w-full">
               <Button
                 component="div"
@@ -73,15 +73,6 @@ export default function Home() {
                 Start Taking Notes
               </Button>
             </Link>
-            <Button
-              variant="outline"
-              size="lg"
-              autoContrast
-              color="accent.4"
-              w="100%"
-            >
-              Watch Demo
-            </Button>
           </div>
         </div>
       </motion.div>

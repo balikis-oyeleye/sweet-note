@@ -5,6 +5,7 @@ import {
   setLocalStorageItem,
 } from "@/utils/local-storage-utils";
 import { v4 as uuidv4 } from "uuid";
+import { notifications } from "@mantine/notifications";
 
 export class NoteHelper {
   public static getNote() {
@@ -48,6 +49,41 @@ export class NoteHelper {
     const notes = this.getNote();
 
     const updatedNotes = notes.filter((note) => note.id !== id);
+
+    setLocalStorageItem(STORE_KEYS.NOTES, updatedNotes);
+
+    return updatedNotes;
+  }
+
+  public static getNoteById(id: string) {
+    return this.getNote().find((note) => note.id === id) ?? null;
+  }
+
+  public static saveNote(note: NoteProps) {
+    const notes = this.getNote();
+
+    const MAX_NOTES = 20;
+
+    const existingIndex = notes.findIndex((n) => n.id === note.id);
+
+    let updatedNotes: NoteProps[];
+
+    if (existingIndex !== -1) {
+      notes[existingIndex] = note;
+      updatedNotes = [...notes];
+    } else {
+      updatedNotes = [note, ...notes];
+    }
+
+    if (updatedNotes.length > MAX_NOTES) {
+      notifications.show({
+        title: "Note Limit Reached",
+        message: `You can only have a maximum of ${MAX_NOTES} notes.`,
+        color: "red",
+      });
+
+      return notes;
+    }
 
     setLocalStorageItem(STORE_KEYS.NOTES, updatedNotes);
 

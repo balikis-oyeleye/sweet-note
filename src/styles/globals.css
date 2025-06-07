@@ -5,6 +5,8 @@
   --color-text: #f8f7ff;
   --color-grid: #1e1e1e;
   --color-radial: #21154c;
+  --color-light: #000;
+  --color-dark: #fff;
 }
 
 :root[data-mantine-color-scheme="light"] {
@@ -12,6 +14,8 @@
   --color-text: #0a100d;
   --color-grid: #f0f0f0;
   --color-radial: #d5c5ff;
+  --color-light: #fff;
+  --color-dark: #000;
 }
 
 @theme {
@@ -42,6 +46,9 @@
   --color-grid: var(--color-grid);
   --color-radial: var(--color-radial);
 
+  --color-dark: var(--color-dark);
+  --color-light: var(--color-light);
+
   --breakpoint-xs: 480px;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -70,4 +77,18 @@ button {
          after:h-[2px] after:w-0
          after:transition-all after:duration-300 
          hover:after:w-full after:bg-primary-400 after:rounded-2xl;
+}
+
+.mantine-RichTextEditor-content {
+  @apply bg-light p-2 rounded-lg shadow-xs;
+  min-height: 250px;
+}
+
+.mantine-RichTextEditor-control {
+  background-color: var(--color-surface);
+  color: var(--color-base);
+}
+
+.mantine-RichTextEditor-control:where([data-active]) {
+  @apply bg-accent-400 text-white;
 }
